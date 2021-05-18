@@ -1,0 +1,3 @@
+[submodule "ksalib"]
+	path = ksalib
+	url = https://github.com/ksaidev/ksalib
