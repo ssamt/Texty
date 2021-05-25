@@ -1,3 +1,11 @@
 from django.contrib import admin
+from django.contrib.auth.models import User, Group
+from . import models
 
-# Register your models here.
+admin.site.unregister(User)
+admin.site.unregister(Group)
+
+@admin.register(models.Page)
+class GaonnuriPostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'website', 'author', 'time')
+    list_filter = ['website']

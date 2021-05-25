@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <form method="get">
+            <input type="text" id="key" name="key">
+            <input type="submit" value="Search">
+        </form><br>
+        {% for r in result %}
+            {{ r.0 }}<br>
+            {% if r.1|length > website_limit %}
+                {% for page in r.1 %}
+                    {% if forloop.counter0 < website_limit %}
+                        <a href="{{ page.link }}">{{ page }}</a><br>
+                    {% endif %}
+                {% endfor %}
+                <a href="{% url 'search'%}?key={{ request.GET.key }}&website={{ r.0 }}">
+                    총 {{ r.1|length }}개의 검색 결과
+                </a>
+                <br>
+            {% else %}
+                {% for page in r.1 %}
+                    <a href="{{ page.link }}">{{ page }}</a><br>
+                {% endfor %}
+            {% endif %}
+            <br>
+        {% endfor %}
+    </body>
+</html>
