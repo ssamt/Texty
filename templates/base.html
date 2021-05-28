@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <form method="get">
+            <input type="text" id="key" name="key" value="{{ request.GET.key }}">
+            <input type="submit" value="Search">
+            <select name="mode">
+                <option value="default" {% if request.GET.mode == 'default' %}selected="selected"{% endif %}>기본</option>
+                <option value="time"{% if request.GET.mode == 'time' %}selected="selected"{% endif %}>시간</option>
+                <option value="relevance"{% if request.GET.mode == 'relevance' %}selected="selected"{% endif %}>정확도</option>
+            </select>
+        </form><br>
+        {% block body %}{% endblock %}
+    </body>
+</html>
