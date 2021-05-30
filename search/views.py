@@ -1,5 +1,6 @@
 import requests
 from django.shortcuts import render
+from SearchKSA.settings import BASE_DIR
 from ksalib.ksalib.Auth import Auth
 from ksalib.ksalib.gaonnuri import get_board_names, get_special_links, board_url
 from . import scrap, search
@@ -7,7 +8,7 @@ from .search import TIME, RELEVANCE, DEFAULT
 
 def scrap_page(request):
     auth = Auth()
-    f = open('gaonnuri_data.txt')
+    f = open(BASE_DIR/'search/gaonnuri_data.txt')
     text = f.readlines()
     id = text[0]
     pw = text[1]
