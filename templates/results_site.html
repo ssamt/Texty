@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block body %}
+    {{ request.GET.website }}<br>
     {% for page in pages %}
         {% if page.time %}{{ page.time|date:'Y-m-d' }}{% endif %}  <a href="{{ page.link }}">{{ page }}</a><br>
     {% endfor %}

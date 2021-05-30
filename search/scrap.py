@@ -33,7 +33,7 @@ def save_gaonnuri_post(auth, link, board):
     find = models.Page.objects.filter(link=link)
     if len(find) == 0:
         post = Post(auth, link)
-        website = gaonnuri_board_name.format(board)
+        website = gaonnuri_board_name.format(board=board)
         comments = '\n'.join([f'{comment.author} {comment.content}' for comment in post.comments])
         content = f'{post.text()} {comments}'
         post_model = models.Page(website=website, link=link, title=post.title, content=content, author=post.author,
@@ -41,15 +41,24 @@ def save_gaonnuri_post(auth, link, board):
         post_model.save()
 
 def save_gaonnuri_board(auth, board_name, board_names):
-    print(board_name)
+    print(board_names[board_name])
     board = Board(auth, board_name)
-    links = board.all_links()
-    for i in range(len(links)):
-        print(f'{links[i]} {i}/{len(links)}')
-        try:
-            save_gaonnuri_post(auth, links[i], board_names[board_name])
-        except:
-            print('error')
+    for page in range(1, board.page_num()+1):
+        print(f'Page: {page}')
+        links = board.links_in_page(page)
+        for i in range(len(links)):
+            find = models.Page.objects.filter(link=links[i])
+            if len(find) == 0:
+                print(links[i])
+                break
+        else:
+            break
+        for i in range(len(links)):
+            print(f'{links[i]} {i}/{len(links)}')
+            try:
+                save_gaonnuri_post(auth, links[i], board_names[board_name])
+            except:
+                print('error')
 
 def save_all_gaonnuri_post(auth):
     board_names = get_board_names(auth)

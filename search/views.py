@@ -7,9 +7,12 @@ from .search import TIME, RELEVANCE, DEFAULT
 
 def scrap_page(request):
     auth = Auth()
-    auth.gaonnuri_auth('ksa20017', 'CEHJtTF94h7senQ')
-    #scrap.save_all_gaonnuri_post(auth)
-    scrap.save_all_gaonnuri_page(auth)
+    f = open('gaonnuri_data.txt')
+    text = f.readlines()
+    id = text[0]
+    pw = text[1]
+    auth.gaonnuri_auth(id, pw)
+    scrap.save_all_gaonnuri_post(auth)
     return render(request, 'scrap.html')
 
 def search_page(request):
