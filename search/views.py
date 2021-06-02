@@ -8,12 +8,8 @@ from .search import TIME, RELEVANCE, DEFAULT
 
 def scrap_page(request):
     auth = Auth()
-    f = open(BASE_DIR/'search/gaonnuri_data.txt')
-    text = f.readlines()
-    id = text[0]
-    pw = text[1]
-    auth.gaonnuri_auth(id, pw)
-    scrap.save_all_gaonnuri_post(auth)
+    auth.lms_auth(*scrap.read_id_pw(BASE_DIR/'search/auth_data/lms_data.txt'))
+    scrap.save_all_lms_post(auth)
     return render(request, 'scrap.html')
 
 def search_page(request):

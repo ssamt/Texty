@@ -1,4 +1,4 @@
 .idea
 venv
 db.sqlite3
-search/gaonnuri_data.txt
+search/auth_data
