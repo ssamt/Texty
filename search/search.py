@@ -44,11 +44,13 @@ def search_pages(s, sort_mode, website=None):
                 priority[post] = 0
     for post in priority.keys():
         lower_title = post.title.lower()
-        lower_author = post.author.lower()
+        if post.author:
+            lower_author = post.author.lower()
         lower_content = post.content.lower()
         for word in s:
             priority[post] += 10*lower_title.count(word)
-            priority[post] += 5*lower_author.count(word)
+            if post.author:
+              priority[post] += 5*lower_author.count(word)
             priority[post] += 1*lower_content.count(word)
     if sort_mode == DEFAULT:
         sum = 0

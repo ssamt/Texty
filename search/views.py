@@ -6,10 +6,17 @@ from ksalib.ksalib.gaonnuri import get_board_names, get_special_links, board_url
 from . import scrap, search
 from .search import TIME, RELEVANCE, DEFAULT
 
-def scrap_page(request):
+def update_all():
     auth = Auth()
     auth.lms_auth(*scrap.read_id_pw(BASE_DIR/'search/auth_data/lms_data.txt'))
+    scrap.save_all_lms_board(auth)
     scrap.save_all_lms_post(auth)
+    auth.gaonnuri_auth(*scrap.read_id_pw(BASE_DIR/'search/auth_data/gaonnuri.txt'))
+    scrap.save_all_gaonnuri_page(auth)
+    scrap.save_all_gaonnuri_post(auth)
+
+def scrap_page(request):
+    scrap.save_all_ksa_page()
     return render(request, 'scrap.html')
 
 def search_page(request):
