@@ -10,6 +10,10 @@ gaonnuri_board_name = gaonnuri_name + ' {}'
 lms_name = 'LMS'
 lms_board_name = lms_name + ' {}'
 ksa_name = '학교 사이트'
+student_name = '학사 사이트'
+department_name = '학부 사이트'
+
+lms_account_owner_name = '김병권'
 
 # read id and pw from text file
 def read_id_pw(path):
@@ -83,6 +87,8 @@ def save_lms_post(auth, link, board):
     find = models.Page.objects.filter(link__contains=f'idx={index}&', website__icontains='lms')
     if len(find) == 0:
         post = lms.Post(auth, link)
+        if post.author == lms_account_owner_name:
+            return
         website = lms_board_name.format(board)
         content = ''
         for file in post.files:
@@ -151,18 +157,3 @@ def save_all_ksa_page():
     pages = ksa.get_all_pages()
     for link in pages:
         save_ksa_page(link)
-
-# for temporary use
-def delete_copies():
-    lms_posts = models.Page.objects.filter(website__istartswith='lms ')
-    index_dict = dict()
-    for post in lms_posts:
-        params = dict(parse.parse_qsl(parse.urlsplit(post.link).query))
-        index = params.get('idx')
-        if index not in index_dict:
-            index_dict[index] = []
-        index_dict[index].append(post)
-    for posts in index_dict.values():
-        if len(posts) > 1:
-            for i in range(1, len(posts)):
-                posts[i].delete()

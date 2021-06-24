@@ -3,7 +3,7 @@ from django.shortcuts import render
 from SearchKSA.settings import BASE_DIR
 from ksalib.ksalib.Auth import Auth
 from ksalib.ksalib.gaonnuri import get_board_names, get_special_links, board_url
-from . import scrap, search
+from . import scrap, search, db
 from .search import TIME, RELEVANCE, DEFAULT
 
 def update_all():
@@ -16,7 +16,9 @@ def update_all():
     scrap.save_all_gaonnuri_post(auth)
 
 def scrap_page(request):
-    scrap.save_all_ksa_page()
+    auth = Auth()
+    auth.lms_auth(*scrap.read_id_pw(BASE_DIR/'search/auth_data/lms_data.txt'))
+    scrap.save_lms_post(auth, 'http://lms.ksa.hs.kr/nboard.php?db=vod&mode=view&idx=83533&page=7&ss=on&sc=&sn=&db=vod&scBCate=1536', 'test')
     return render(request, 'scrap.html')
 
 def search_page(request):

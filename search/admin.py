@@ -7,5 +7,5 @@ admin.site.unregister(Group)
 
 @admin.register(models.Page)
 class GaonnuriPostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'website', 'author', 'time')
+    list_display = ('title', 'website', 'author', 'time', 'default_importance', 'manual_importance')
     list_filter = ['website', 'author']

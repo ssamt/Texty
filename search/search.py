@@ -52,6 +52,10 @@ def search_pages(s, sort_mode, website=None):
             if post.author:
               priority[post] += 5*lower_author.count(word)
             priority[post] += 1*lower_content.count(word)
+        if post.manual_importance:
+            priority[post] *= post.manual_importance
+        else:
+            priority[post] *= post.default_importance
     if sort_mode == DEFAULT:
         sum = 0
         count = 0
