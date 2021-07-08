@@ -3,32 +3,39 @@
     <head>
         <meta charset="UTF-8">
         <title>Title</title>
-        <style>
-        </style>
+        <link href="texty_base.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
+       <section>
+	        <a href="https://ksa.hs.kr"><div id="ksalogo"></div></a>
+	        <div id="other">
+                <a href="https://ksatimetable.herokuapp.com/">시간표엑셀</a>
+                <a href="https://docs.google.com/document/d/1F0OwcWBFX517r8jL3AMEKxwHbz69J6QT-eIlSF7itT8/edit">수강위키</a>
+                <a href="https://github.com/ssamt/Scrapylms">scrapLMS</a>
+	        </div>
+        </section>
+        
         <header>
-            <div id="logo"><a href=#></a></div>
             <nav>
-                <ul>
+                <ul id="menu">
                     <li>
-                        <a href="https://ksa.hs.kr">학사사이트</a>
+                        <a href="https://lms.ksa.hs.kr" target="_blank">LMS</a>
                     </li>
                     <li>
-                        <a href="http://gaonnuri.ksain.net/xe/">가온누리</a>
+                        <a href="http://gaonnuri.ksain.net/xe/"target="_blank">가온누리</a>
                     </li>
                     <li>
-                        <a href="https://students.ksa.hs.kr">학생웹</a>
+                        <a href="https://students.ksa.hs.kr"target="_blank">학생웹</a>
                     </li>
                     <li>
-                        <a href="https://parents.ksa.hs.kr">학부모웹</a>
-                        <div>꿀팁>여기서 생기부 코멘트를 확인할 수 있다!!!
-                            id형식:20-1***
-                        </div>
+                        <a href="https://parents.ksa.hs.kr"target="_blank">학부모웹</a>
                     </li>
                 </ul>
             </nav>
         </header>
+        <div id="top">
+             <a href=#><div id="name"></div></a>
+        </div>
         <section>
         <form method="get">
             <input type="text" id="key" name="key" value="{{ request.GET.key }}">
