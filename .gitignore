@@ -2,3 +2,4 @@
 venv
 db.sqlite3
 search/auth_data
+example.html

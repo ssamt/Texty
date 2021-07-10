@@ -1,20 +1,13 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>Title</title>
-	<link href="base.css" rel="stylesheet" type="text/css"/>
+	<link href="{% static 'base.css' %}" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <section>
-	<a href="https://ksa.hs.kr"><div id="ksalogo"></div></a>
-	<div id="other">
-            <a href="https://ksatimetable.herokuapp.com/">시간표엑셀</a>
-            <a href="https://docs.google.com/document/d/1F0OwcWBFX517r8jL3AMEKxwHbz69J6QT-eIlSF7itT8/edit">수강위키</a>
-            <a href="https://github.com/ssamt/Scrapylms">scrapLMS</a>
-	</div>
-        </section>
-        
         <header>
             <nav>
                 <ul id="menu">
@@ -22,28 +15,25 @@
                         <a href="https://lms.ksa.hs.kr" target="_blank">LMS</a>
                     </li>
                     <li>
-                        <a href="http://gaonnuri.ksain.net/xe/"target="_blank">가온누리</a>
+                        <a href="http://gaonnuri.ksain.net/xe/" target="_blank">가온누리</a>
                     </li>
                     <li>
-                        <a href="https://students.ksa.hs.kr"target="_blank">학생웹</a>
+                        <a href="https://students.ksa.hs.kr" target="_blank">학생웹</a>
                     </li>
                     <li>
-                        <a href="https://parents.ksa.hs.kr"target="_blank">학부모웹</a>
+                        <a href="https://parents.ksa.hs.kr" target="_blank">학부모웹</a>
                     </li>
                 </ul>
             </nav>
         </header>
-        <div id="top">
-             <a href=#><div id="name"></div></a>
-        </div>
         <section>
         <form method="get">
             <input type="text" id="key" name="key" value="{{ request.GET.key }}">
             <input type="submit" value="Search">
             <select name="mode">
                 <option value="default" {% if request.GET.mode == 'default' %}selected="selected"{% endif %}>기본</option>
-                <option value="time"{% if request.GET.mode == 'time' %}selected="selected"{% endif %}>시간</option>
-                <option value="relevance"{% if request.GET.mode == 'relevance' %}selected="selected"{% endif %}>정확도</option>
+                <option value="time" {% if request.GET.mode == 'time' %}selected="selected"{% endif %}>시간</option>
+                <option value="relevance" {% if request.GET.mode == 'relevance' %}selected="selected"{% endif %}>정확도</option>
             </select>
         </form><br>
         </section>
