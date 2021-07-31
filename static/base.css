@@ -3,7 +3,7 @@ li{list-style:none;}
 a{text-decoration:none; font-size:16px;}
 
 section{width:90%; height:50px; margin:20px auto;}
-#ksalogo{float:left; width:200px; height:50px; background-image:url(img/ksalonglogo.png);
+#ksalogo{float:left; width:200px; height:50px; background-image:url(ksalonglogo.png);
 background-size:cover;}
 #other{float:right;}
 #other a{float:left; margin:0 20px;
@@ -11,7 +11,7 @@ font-size:15px;color:#616161;line-height:50px;}
 
 #top{width:100%; height:100px;margin:30px auto; margin-bottom:0;}
 #name{width:800px;height:100px;margin:0 auto;
-background-image:url(img/texty.png);}
+background-image:url(texty.png);}
 
 #menu{width:100%; overflow:hidden; margin:0px auto;
 margin-top:0;}
